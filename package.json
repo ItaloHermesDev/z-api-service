@@ -1,5 +1,5 @@
 {
-  "name": "z-api-service",
+  "name": "omini-z-service",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "iron-session": "^9.0.1",
+    "mysql2": "^3.24.5",
     "next": "16.4.0",
     "react": "19.3.0",
     "react-dom": "19.3.0"

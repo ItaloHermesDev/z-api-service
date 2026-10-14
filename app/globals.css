@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f0f3f6;
+  --foreground: #001737;
 }
 
 @theme inline {
@@ -12,15 +14,353 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+body {
+  background: #f0f3f6;
+  color: #001737;
+  font-family: var(--font-sans), "Segoe UI", sans-serif;
+}
+
+.kp-shell {
+  display: flex;
+  min-height: 100%;
+  flex: 1;
+  flex-direction: column;
+  background: #f0f3f6;
+}
+
+.kp-top-slot {
+  position: relative;
+  z-index: 40;
+  display: block;
+}
+
+.kp-top {
+  display: flex;
+  height: 78px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 28px;
+  background: #fff;
+  box-shadow: 0 19px 34px -15px #f1f6f8;
+}
+
+.kp-brand {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.kp-logo-name {
+  display: block;
+  height: 68px;
+  width: auto;
+}
+
+.kp-logo-mark {
+  display: none;
+  height: 42px;
+  width: auto;
+}
+
+.kp-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.kp-burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.kp-burger > i {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #001737;
+  transition: background 0.25s ease;
+}
+
+.kp-burger > i::before,
+.kp-burger > i::after {
+  position: absolute;
+  left: 0;
+  width: 20px;
+  height: 2px;
+  background: #001737;
+  content: "";
+  transition: transform 0.3s ease;
+}
+
+.kp-burger > i::before {
+  top: -6px;
+}
+
+.kp-burger > i::after {
+  top: 6px;
+}
+
+.kp-burger[aria-expanded="true"] > i {
+  background: transparent;
+}
+
+.kp-burger[aria-expanded="true"] > i::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.kp-burger[aria-expanded="true"] > i::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.kp-user {
+  position: relative;
+}
+
+.kp-user-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border: 0;
+  background: transparent;
+  color: #001737;
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.kp-avatar {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.kp-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kp-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 220px;
+  padding: 14px 14px 10px;
+  border: 1px solid #e7eaed;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 2px 4px 0 rgba(185, 185, 185, 0.5);
+}
+
+.kp-dropdown-email,
+.kp-dropdown-role {
+  margin: 0;
+  color: #6c7293;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.kp-dropdown-role {
+  margin-top: 2px;
+  margin-bottom: 10px;
+}
+
+.kp-dropdown button {
+  width: 100%;
+  height: 36px;
+  border: 0;
+  border-radius: 4px;
+  background: #464dee;
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.kp-nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: stretch;
+  background: #fff;
+  box-shadow: 0 19px 34px -15px #d5dee3;
+}
+
+.kp-nav-track {
+  display: flex;
+  flex: 1;
+  align-items: stretch;
+  justify-content: safe center;
+  gap: 8px;
+  min-height: 64px;
+  padding: 0 20px;
+}
+
+.kp-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  border-bottom: 3px solid transparent;
+  color: #000;
+  font-size: 0.937rem;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.kp-nav a:hover {
+  color: #464dee;
+}
+
+.kp-nav a.is-current {
+  color: #464dee;
+  border-bottom-color: #0ddbb9;
+}
+
+.kp-nav-icon {
+  display: inline-flex;
+  color: inherit;
+}
+
+.kp-page {
+  width: 100%;
+  max-width: 72rem;
+  flex: 1;
+  margin: 0 auto;
+  padding: 28px 24px 40px;
+  animation: kp-enter 0.38s ease;
+}
+
+@keyframes kp-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.kp-backdrop {
+  position: fixed;
+  z-index: 35;
+  inset: 64px 0 0;
+  border: 0;
+  background: rgba(0, 23, 55, 0.45);
+  cursor: pointer;
+  animation: kp-fade 0.32s ease;
 }
+
+@keyframes kp-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1019px) {
+  .kp-top-slot {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+  }
+
+  .kp-top {
+    height: 64px;
+    padding: 0 12px 0 4px;
+  }
+
+  .kp-burger {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  .kp-logo-name {
+    display: none;
+  }
+
+  .kp-logo-mark {
+    display: block;
+  }
+
+  .kp-user-name {
+    display: none;
+  }
+
+  .kp-nav {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    z-index: 36;
+    width: min(300px, 86vw);
+    height: calc(100% - 64px);
+    flex-direction: column;
+    overflow-y: auto;
+    box-shadow: none;
+    transform: translateX(-100%);
+    transition: transform 0.32s ease;
+  }
+
+  .kp-nav.is-open {
+    transform: translateX(0);
+    box-shadow: 12px 0 28px rgba(0, 23, 55, 0.16);
+  }
+
+  .kp-nav-track {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    min-height: 0;
+    padding: 8px 0 24px;
+  }
+
+  .kp-nav a {
+    min-height: 48px;
+    padding: 0 18px;
+    border-bottom: 0;
+    border-left: 3px solid transparent;
+  }
+
+  .kp-nav a.is-current {
+    border-bottom-color: transparent;
+    border-left-color: #0ddbb9;
+    background: #f4f6ff;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kp-page,
+  .kp-backdrop,
+  .kp-nav,
+  .kp-burger > i,
+  .kp-burger > i::before,
+  .kp-burger > i::after,
+  .kp-nav a {
+    animation: none;
+    transition: none;
+  }
+}
+

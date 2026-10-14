@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "z-api": {
+      "url": "https://mcp.z-api.io/mcp"
+    }
+  }
+}

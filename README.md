@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Omini Z Service
+
+Painel Next.js com login próprio no MySQL. A conta da Omni Z-API ainda não está ligada.
 
 ## Getting Started
 
